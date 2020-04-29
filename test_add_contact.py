@@ -14,11 +14,34 @@ class TestAddContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_add_new_page(wd)
-        self.create_new_contact(wd, firstname="grgegergrgdfgdfg453534", middlename="gdgfgdf4253SDD", lastname="dvdfdgrfgd2432rff@#", nickname="dgfgrgr32432f",
-                                title="gfgdfgdgretrgf54354!@3", company="gfgfgtr345345@#", address="fdfddgfhfghrhdfsdffe54543535",
-                                home="dgdfgdfgsdgdfhfghfd455@#", mobile="gdfgdfgdf4434243", work="32423423rwerwrw", fax="vcvbgnhkukiiilmhbv",
-                                email="fgdfgdgdf@efeeewe", email2="fdfdfdfdgfgthjhbvccx", email3="dfsgfhgjhgtrdscxvbnmujhgfd", homepage="fgggdgdg",
-                                address2="gfgfggfg34545", phone2="ggdfggfg4543t", notes="cvcbvcgfnfh4334@#")
+        self.create_new_contact(wd, firstname="grgegergrgdfgdfg453534", middlename="gdgfgdf4253SDD",
+                                lastname="dvdfdgrfgd2432rff@#", nickname="dgfgrgr32432f",
+                                title="gfgdfgdgretrgf54354!@3", company="gfgfgtr345345@#",
+                                address="fdfddgfhfghrhdfsdffe54543535", home="dgdfgdfgsdgdfhfghfd455@#",
+                                mobile="gdfgdfgdf4434243", work="32423423rwerwrw", fax="vcvbgnhkukiiilmhbv",
+                                email="fgdfgdgdf@efeeewe", email2="fdfdfdfdgfgthjhbvccx",
+                                email3="dfsgfhgjhgtrdscxvbnmujhgfd", homepage="fgggdgdg", address2="gfgfggfg34545",
+                                phone2="ggdfggfg4543t", notes="cvcbvcgfnfh4334@#", Birthdayyear="9999",
+                                Anniversaryyear="0010", bday="14", bmonth="December", aday="1", group="eeqdasd",
+                                amonth="June")
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
+    def test_add_emptycontact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_add_new_page(wd)
+        self.create_new_contact(wd, firstname="", middlename="",
+                                lastname="", nickname="",
+                                title="", company="",
+                                address="", home="",
+                                mobile="", work="", fax="",
+                                email="", email2="",
+                                email3="", homepage="", address2="",
+                                phone2="", notes="", Birthdayyear="",
+                                Anniversaryyear="", bday="", bmonth="-", aday="", group="",
+                                amonth="-")
         self.return_to_home_page(wd)
         self.logout(wd)
 
@@ -29,7 +52,8 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_link_text("home page").click()
 
     def create_new_contact(self, wd, firstname, middlename, lastname, nickname, title, company, address, home, mobile,
-                           work, fax, email, email2, email3, homepage, address2, phone2, notes):
+                           work, fax, email, email2, email3, homepage, address2, phone2, notes, Birthdayyear,
+                           Anniversaryyear, bday, bmonth, aday, group, amonth):
         # create new contact
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -79,26 +103,26 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("homepage").clear()
         wd.find_element_by_name("homepage").send_keys(homepage)
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text("14")
-        wd.find_element_by_xpath("//option[@value='14']").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(bday)
+        #wd.find_element_by_xpath("//option[@value='14']").click()
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("December")
-        wd.find_element_by_xpath("//option[@value='December']").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(bmonth)
+        #wd.find_element_by_xpath("//option[@value='December']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys("9999")
+        wd.find_element_by_name("byear").send_keys(Birthdayyear)
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
-        wd.find_element_by_xpath("(//option[@value='1'])[2]").click()
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(aday)
+        #wd.find_element_by_xpath("(//option[@value='1'])[2]").click()
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text("June")
-        wd.find_element_by_xpath("(//option[@value='June'])[2]").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(amonth)
+        #wd.find_element_by_xpath("(//option[@value='June'])[2]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys("0010")
+        wd.find_element_by_name("ayear").send_keys(Anniversaryyear)
         wd.find_element_by_name("new_group").click()
-        Select(wd.find_element_by_name("new_group")).select_by_visible_text("eeqdasd")
-        wd.find_element_by_xpath("(//option[@value='17'])[2]").click()
+        Select(wd.find_element_by_name("new_group")).select_by_visible_text(group)
+        #wd.find_element_by_xpath("(//option[@value='17'])[2]").click()
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys(address2)
