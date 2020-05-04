@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.support.select import Select
 from fixture.session import SessionHelper
 from fixture.contact import ContactHelper
 
@@ -10,7 +9,7 @@ class ApplicationC:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
         self.session = SessionHelper(self)
-        self.session = ContactHelper(self)
+        self.contact = ContactHelper(self)
 
     def return_to_home_page(self):
         wd = self.wd

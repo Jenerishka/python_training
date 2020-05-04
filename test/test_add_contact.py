@@ -24,6 +24,7 @@ def test_add_contact(app):
                                amonth="June"))
     app.session.logout()
 
+
 def test_add_emptycontact(app):
     app.session.login(username="admin", password="secret")
     app.contact.create(Contact(firstname="", middlename="",
