@@ -11,11 +11,8 @@ class TestAddContact(unittest.TestCase):
 
     
     def test_add_contact(self):
-        wd = self.wd
-        #self.open_home_page(wd)
-        self.login(wd, username="admin", password="secret")
-        #self.open_add_new_page(wd)
-        self.create_new_contact(wd, Contact(firstname="grgegergrgdfgdfg453534", middlename="gdgfgdf4253SDD",
+        self.login(username="admin", password="secret")
+        self.create_new_contact(Contact(firstname="grgegergrgdfgdfg453534", middlename="gdgfgdf4253SDD",
                                 lastname="dvdfdgrfgd2432rff@#", nickname="dgfgrgr32432f",
                                 title="gfgdfgdgretrgf54354!@3", company="gfgfgtr345345@#",
                                 address="fdfddgfhfghrhdfsdffe54543535", home="dgdfgdfgsdgdfhfghfd455@#",
@@ -25,15 +22,11 @@ class TestAddContact(unittest.TestCase):
                                 phone2="ggdfggfg4543t", notes="cvcbvcgfnfh4334@#", Birthdayyear="9999",
                                 Anniversaryyear="0010", bday="14", bmonth="December", aday="1", group="eeqdasd",
                                 amonth="June"))
-        #self.return_to_home_page(wd)
-        self.logout(wd)
+        self.logout()
 
     def test_add_emptycontact(self):
-        wd = self.wd
-        #self.open_home_page(wd)
-        self.login(wd, username="admin", password="secret")
-        #self.open_add_new_page(wd)
-        self.create_new_contact(wd, Contact(firstname="", middlename="",
+        self.login(username="admin", password="secret")
+        self.create_new_contact(Contact(firstname="", middlename="",
                                 lastname="", nickname="",
                                 title="", company="",
                                 address="", home="",
@@ -43,18 +36,20 @@ class TestAddContact(unittest.TestCase):
                                 phone2="", notes="", Birthdayyear="",
                                 Anniversaryyear="", bday="", bmonth="-", aday="", group="",
                                 amonth="-"))
-        #self.return_to_home_page(wd)
-        self.logout(wd)
+        self.logout()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def return_to_home_page(self, wd):
+    def return_to_home_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("home page").click()
 
-    def create_new_contact(self, wd, contact):
+    def create_new_contact(self, contact):
+        wd = self.wd
         # create new contact
-        self.open_add_new_page(wd)
+        self.open_add_new_page()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -134,13 +129,15 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("notes").send_keys(contact.notes)
         # submit contact creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        self.return_to_home_page(wd)
+        self.return_to_home_page()
 
-    def open_add_new_page(self, wd):
+    def open_add_new_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("add new").click()
 
-    def login(self, wd, username, password):
-        self.open_home_page(wd)
+    def login(self, username, password):
+        wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -148,9 +145,12 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/")
 
+    def tearDown(self):
+        self.wd.quit()
 
 if __name__ == "__main__":
     unittest.main()
