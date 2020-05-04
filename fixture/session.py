@@ -1,4 +1,4 @@
-class SessionHelperG:
+class SessionHelper:
 
 
     def __init__(self, app):
