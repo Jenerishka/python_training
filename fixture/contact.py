@@ -91,13 +91,12 @@ class ContactHelper:
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.app.return_to_home_page()
 
-    #def delete_first_contact(self):
-        #wd = self.app.wd
-        #select first
-        #wd.find_element_by_name("selected[]").click()
-        # submit deletion
-        #wd.find_element_by_css_selector('button.with-class#or-id').click()
-        #self.app.return_to_home_page()
+    def delete_first_contact(self):
+        wd = self.app.wd
+        # press button edit
+        wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img").click()
+        # press button delete
+        wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[2]/input[2]").click()
 
     def open_add_new_page(self):
         wd = self.app.wd
