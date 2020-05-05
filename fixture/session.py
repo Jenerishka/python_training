@@ -3,9 +3,14 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
-    def logout(self):
+    def logout(self, NoSuchElementExeption=None):
         wd = self.app.wd
-        wd.find_element_by_link_text("Logout").click()
+        try:
+            elem = wd.find_element_by_link_text("Logout")
+            elem.click()
+            wd.find_element_by_name("user")
+        except NoSuchElementExeption:
+            print("ops")
 
     def login(self, username, password):
         wd = self.app.wd
