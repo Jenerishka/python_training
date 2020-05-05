@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from model.contact import Contact
 import pytest
-from fixture.applicationC import ApplicationC
+from fixture.application import Application
 
 @pytest.fixture
 def app(request):
-    fixture = ApplicationC()
+    fixture = Application()
     request.addfinalizer(fixture.destroy)
     return fixture
 
@@ -35,6 +35,6 @@ def test_add_emptycontact(app):
                                email="", email2="",
                                email3="", homepage="", address2="",
                                phone2="", notes="", Birthdayyear="",
-                               Anniversaryyear="", bday="", bmonth="-", aday="", group="",
+                               Anniversaryyear="", bday="", bmonth="-", aday="", group="[none]",
                                amonth="-"))
     app.session.logout()
