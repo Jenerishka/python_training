@@ -4,19 +4,16 @@ from model.contact import Contact
 
 def test_modification_first_contact(app):
     app.session.login(username="admin", password="secret")
-    app.contact.modific_first_contact(Contact(firstname="#########",
-                                              middlename="#######",
-                                              lastname="QQQQQwwwww",
-                                              nickname="#########",
-                                              title="3", company="v",
-                                              address="vvvvv", home="dddddd",
-                                              mobile="d", work="g", fax="e",
-                                              email="n", email2="z", email3="c",
-                                              homepage="d", address2="h",
-                                              phone2="e", notes="g",
-                                              Birthdayyear="3434",
-                                              Anniversaryyear="0022", bday="18",
-                                              bmonth="June", aday="8",
-                                              group="eeqdasd",
-                                              amonth="December"))
+    app.contact.modific_first_contact(Contact(firstname="fdre33",
+                               middlename="3434rf", lastname="dv56#",
+                               nickname="hg56", title="@3",
+                               company="gfgf54", address="f45rtr5",
+                               home="vbcb545", mobile="vv", work="34fdf",
+                               fax="gdfggrr", email="ggg435AS",
+                               email2="gfhh6545 g", email3="djfd",
+                               homepage="nbnb", address2="gkh",
+                               phone2="7677", notes="@#",
+                               Birthdayyear="3456", Anniversaryyear="0018",
+                               bday="23", bmonth="June", aday="7",
+                               group="eeqdasd", amonth="December"))
     app.session.logout()
