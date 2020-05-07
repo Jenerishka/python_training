@@ -12,7 +12,7 @@ class ContactHelper:
         self.open_add_new_page()
         # create new contact
         # work with the form
-        self.forms_change(contact, wd)
+        self.forms_change(contact)
         # Select group
         wd.find_element_by_name("new_group").click()
         Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.group)
@@ -20,7 +20,8 @@ class ContactHelper:
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.app.return_to_home_page()
 
-    def forms_change(self, contact, wd):
+    def forms_change(self, contact):
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -109,7 +110,7 @@ class ContactHelper:
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form["
                                  "2]/table/tbody/tr[2]/td[8]/a/img").click()
         # work with the form
-        self.forms_change(contact, wd)
+        self.forms_change(contact)
         # _submit contact creation
         wd.find_element_by_name("update").click()
         self.app.return_to_home_page()
