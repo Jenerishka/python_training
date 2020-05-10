@@ -17,3 +17,15 @@ def test_modification_first_contact(app):
                                bday="23", bmonth="June", aday="7",
                                group="eeqdasd", amonth="December"))
     app.session.logout()
+
+
+def test_modification_first_contact_firstname(app):
+    app.session.login(username="admin", password="secret")
+    app.contact.modific_first_contact(Contact(firstname="AAAAAA"))
+    app.session.logout()
+
+
+def test_modification_first_contact_mobile(app):
+    app.session.login(username="admin", password="secret")
+    app.contact.modific_first_contact(Contact(mobile="79954637845"))
+    app.session.logout()
