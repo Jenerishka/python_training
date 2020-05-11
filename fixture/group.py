@@ -1,3 +1,6 @@
+from gettext import find
+from selenium.webdriver.support.select import Select
+from fixture import contact
 
 
 class GroupHelper:
@@ -68,8 +71,7 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
 
-    # def count(self):
-        # wd = self.app.wd
-        # self.open_groups_page()
-        # return len(wd.find_elements_by_name("selected[]"))
-
+    def count(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        return len(wd.find_elements_by_name("selected[]"))
