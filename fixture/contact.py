@@ -84,7 +84,8 @@ class ContactHelper:
 
     def open_add_new_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("add new").click()
+        if not (wd.current_url.endswith("/edit.php") and not len(wd.find_elements_by_name("photo")) > 0):
+            wd.find_element_by_link_text("add new").click()
 
     def count(self):
         wd = self.app.wd
