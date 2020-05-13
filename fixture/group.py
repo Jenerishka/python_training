@@ -1,6 +1,3 @@
-from gettext import find
-from selenium.webdriver.support.select import Select
-from fixture import contact
 
 
 class GroupHelper:

@@ -29,7 +29,7 @@ def test_modification_first_contact(app):
 
 
 def test_modification_first_contact_firstname(app):
-    if app.contact.count() == 0:
+    if app.contact.count()  == 0:
         app.contact.create(Contact(firstname="qwer!", middlename="qwer!",
                                    lastname="qwer!", nickname="qwer!",
                                    title="@3", company="gfg", address="v",
@@ -44,7 +44,7 @@ def test_modification_first_contact_firstname(app):
 
 
 def test_modification_first_contact_mobile(app):
-    if app.contact.count() == 0:
+    if app.contact.count()  == 0:
         app.contact.create(Contact(firstname="qwer!", middlename="qwer!",
                                    lastname="qwer!", nickname="qwer!",
                                    title="@3", company="gfg", address="v",
