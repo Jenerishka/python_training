@@ -1,8 +1,8 @@
 from selenium.webdriver.support.select import Select
+from fixture.group import GroupHelper
 
 
 class ContactHelper:
-
     def __init__(self, app):
         self.app = app
 
@@ -89,7 +89,6 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        # self.group.return_to_general_home_page()
-        wd.find_element_by_link_text("home").click()
+        self.app.group.return_to_general_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
