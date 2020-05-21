@@ -1,5 +1,5 @@
 from selenium.webdriver.support.select import Select
-from fixture.group import GroupHelper
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -15,7 +15,8 @@ class ContactHelper:
         self.forms_change(contact)
         # Select group
         wd.find_element_by_name("new_group").click()
-        Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.group)
+        Select(wd.find_element_by_name("new_group")).select_by_visible_text(
+            contact.group)
         # submit contact creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.app.return_to_home_page()
@@ -51,7 +52,7 @@ class ContactHelper:
         wd = self.app.wd
         if text is not None:
             wd.find_element_by_name(field_select).click()
-            Select(wd.find_element_by_name(field_select)).select_by_visible_text\
+            Select(wd.find_element_by_name(field_select)).select_by_visible_text \
                 (text)
 
     def change_form_value_contact(self, field_name, text):
@@ -65,7 +66,8 @@ class ContactHelper:
         wd = self.app.wd
         self.press_button_edit()
         # press button delete
-        wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[2]/input[2]").click()
+        wd.find_element_by_xpath(
+            "/html/body/div[1]/div[4]/form[2]/input[2]").click()
 
     def press_button_edit(self):
         wd = self.app.wd
@@ -84,7 +86,8 @@ class ContactHelper:
 
     def open_add_new_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("/edit.php") and not len(wd.find_elements_by_name("photo")) > 0):
+        if not (wd.current_url.endswith("/edit.php") and not len(
+                wd.find_elements_by_name("photo")) > 0):
             wd.find_element_by_link_text("add new").click()
 
     def count(self):
@@ -92,3 +95,13 @@ class ContactHelper:
         self.app.group.return_to_general_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.app.group.return_to_general_home_page()
+        contacts = []
+        for element in wd.find_elements_by_css_selector("tr[name]"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute(
+                "value")
+            contacts.append(Contact(firstname=text, lastname=text, id=id))
+        return contacts
