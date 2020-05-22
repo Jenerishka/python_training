@@ -14,7 +14,7 @@ def test_modification_first_contact(app):
                                    Anniversaryyear="0012", bday="15",
                                    bmonth="December", aday="5", group="[none]",
                                    amonth="June"))
-    old_contacts = app.contact.get_contact_list()
+    old_contacts = app.contact.get_contact_list
     app.contact.modific_first_contact(Contact(firstname="fdre33",
                                middlename="3434rf", lastname="dv56#",
                                nickname="hg56", title="@3",
@@ -27,7 +27,7 @@ def test_modification_first_contact(app):
                                Birthdayyear="3456", Anniversaryyear="0018",
                                bday="23", bmonth="June", aday="7",
                                group="eeqdasd", amonth="December"))
-    new_contacts = app.contact.get_contact_list()
+    new_contacts = app.contact.get_contact_list
     assert len(old_contacts) == len(new_contacts)
 
 
@@ -43,9 +43,9 @@ def test_modification_first_contact_firstname(app):
                                    Anniversaryyear="0012", bday="15",
                                    bmonth="December", aday="5", group="[none]",
                                    amonth="June"))
-    old_contacts = app.contact.get_contact_list()
+    old_contacts = app.contact.get_contact_list
     app.contact.modific_first_contact(Contact(firstname="AAAAAA"))
-    new_contacts = app.contact.get_contact_list()
+    new_contacts = app.contact.get_contact_list
     assert len(old_contacts) == len(new_contacts)
 
 
@@ -61,7 +61,7 @@ def test_modification_first_contact_mobile(app):
                                    Anniversaryyear="0012", bday="15",
                                    bmonth="December", aday="5", group="[none]",
                                    amonth="June"))
-    old_contacts = app.contact.get_contact_list()
+    old_contacts = app.contact.get_contact_list
     app.contact.modific_first_contact(Contact(mobile="79954637845"))
-    new_contacts = app.contact.get_contact_list()
+    new_contacts = app.contact.get_contact_list
     assert len(old_contacts) == len(new_contacts)
